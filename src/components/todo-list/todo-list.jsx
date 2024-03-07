@@ -4,13 +4,20 @@ import "./todo-list.scss";
 
 export const TodoList = (props) => {
   const { todos, setTodos } = props;
+  console.log(todos);
 
   const handleDelete = (id) => {
     // Function to delete task
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   const toggleCheck = (id) => {
     // Function to toggle task
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, checked: !todo.checked } : todo
+      )
+    );
   };
 
   const handleKeyUp = (e, id) => {
